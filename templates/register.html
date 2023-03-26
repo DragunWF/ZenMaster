@@ -1,0 +1,141 @@
+{% extends "layout.html" %} {% block title %} Register {% endblock %} {% block
+main %}
+<div class="w-50 container form-container-wrapper rounded">
+  <form
+    class="form-container bg-light shadow-lg p-3 mb-5 bg-body rounded"
+    action="/register"
+    method="post"
+  >
+    <h2 class="h2 text-center">Create an account</h2>
+    {% if not validation %}
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Email"
+        autocomplete="off"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        id="username"
+        required
+      />
+      <div class="invalid-feedback" id="invalidUsername">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        id="password"
+        required
+      />
+      <div class="invalid-feedback" id="invalidPassword">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        name="confirm_password"
+        class="form-control"
+        placeholder="Confirm Password"
+        id="confirmPassword"
+        required
+      />
+      <div class="invalid-feedback" id="invalidConfirmPassword">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    {% else %}
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Email"
+        value="{{ form_data['email'] }}"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        id="username"
+        value="{{ form_data['username'] }}"
+        required
+      />
+      <div class="invalid-feedback" id="usernameTakenFeedback">
+        Username is already taken!
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        id="password"
+        value="{{ form_data['password'] }}"
+        required
+      />
+      <div class="invalid-feedback" id="invalidPassword">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        name="confirm_password"
+        class="form-control"
+        placeholder="Confirm Password"
+        id="confirmPassword"
+        value="{{ form_data['confirmPassword'] }}"
+        required
+      />
+      <div class="invalid-feedback" id="invalidConfirmPassword">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    {% endif %}
+    <div class="form-button-layout">
+      <div class="form-button">
+        <input
+          class="btn btn-primary"
+          type="button"
+          value="Register"
+          id="submitBtn"
+        />
+      </div>
+      <div class="form-button">
+        <a class="btn btn-primary" href="/login" role="button"
+          >Login to an existing account</a
+        >
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/register_validation.js"></script>
+{% endblock %}

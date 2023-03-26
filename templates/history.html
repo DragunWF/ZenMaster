@@ -1,0 +1,63 @@
+{% extends "layout.html" %} {% block title %} History {% endblock %} {% block
+main %}
+<div class="container">
+  <h1 class="h3 text-center">Your Activity History</h1>
+  <table class="table table-hover shadow p-3 mb-5 bg-body rounded">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in data %}
+      <tr>
+        <th scope="row">{{ log['count'] }}</th>
+        <td>{{ log['activity'] }}</td>
+        <td>{{ log['date'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="container mt-4 flex-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" id="previousPageBtn">
+        <a
+          class="page-link"
+          href="/history?page={{ current_page - 1 }}"
+          id="previousPageLink"
+          >Previous</a
+        >
+      </li>
+
+      {% for i in range(1, page_count + 1) %} {% if i == current_page %}
+      <li
+        class="page-item active"
+        href="/history?page={{ i }}"
+        aria-current="page"
+      >
+        <a class="page-link active">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="/history?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %} {% endfor %}
+
+      <li class="page-item" id="nextPageBtn">
+        <a
+          class="page-link"
+          href="/history?page={{ current_page + 1 }}"
+          id="nextPageLink"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/pagination.js"></script>
+{% endblock %}

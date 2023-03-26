@@ -1,0 +1,48 @@
+{% extends "layout.html" %} {% block title %} Write a quote! {% endblock %} {%
+block main %}
+<div class="w-50 container-sm">
+  <form action="/create" method="post">
+    <h1 class="h1 text-center">Create a new post</h1>
+    <div class="mb-3">
+      <label class="h4 form-label">Quote Title</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        placeholder="Type your title"
+        id="title"
+        required
+      />
+      <div class="invalid-feedback" id="invalidTitle">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="h4 form-label">Content</label>
+      <textarea
+        class="form-control"
+        name="content"
+        rows="6"
+        placeholder="Enter your quote!"
+        id="content"
+        required
+      ></textarea>
+      <div class="invalid-feedback" id="invalidContent">
+        This text is replaced through JavaScript.
+      </div>
+    </div>
+    <div class="form-buttons-horizontal">
+      <input
+        class="btn btn-primary"
+        type="button"
+        value="Submit"
+        id="submitBtn"
+      />
+      <input class="btn btn-danger" type="reset" value="Reset" id="resetBtn" />
+    </div>
+  </form>
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/create.js"></script>
+<script src="/static/js/post_validation.js"></script>
+{% endblock %}

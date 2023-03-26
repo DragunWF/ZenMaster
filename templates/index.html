@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block title %} Welcome! {% endblock %} {% block
+main %}
+<div class="px-4 py-5 my-5 text-center">
+  <img
+    class="d-block mx-auto mb-4"
+    src="/static/images/blue_flower.svg"
+    alt=""
+    width="80"
+    height="60"
+  />
+  <h1 class="display-5 fw-bold">ZenMaster</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      Welcome to ZenMaster, dedicated to the art of Zen and the wisdom it
+      offers. Here you will find a curated collection of profound and inspiring
+      Zen quotes, designed to help you cultivate mindfulness, find inner peace,
+      and live a more meaningful life. Whether you are new to Zen or a seasoned
+      practitioner, our website is the perfect resource to deepen your
+      understanding of this ancient philosophy and apply its teachings to your
+      daily life. So take a moment to explore our collection and let the wisdom
+      of Zen guide you on your journey.
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a class="btn btn-primary btn-lg px-4 gap-3" href="/register">
+        Sign-up
+      </a>
+      <a class="btn btn-outline-secondary btn-lg px-4" href="/login"> Login </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

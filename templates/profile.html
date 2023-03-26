@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block title %} {{ visited_username }} {% endblock
+%} {% block main %}
+<div class="user-container px-4 py-5 my-5 text-center">
+  <h1 class="display-4 fw-bold">
+    {{ visited_username }} <small class="text-muted">Level {{ level }}</small>
+  </h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">{{ description }}</p>
+  </div>
+</div>
+<div class="container">
+  <h1 class="display-1 text-center">User's Posts</h1>
+  <div class="d-flex flex-wrap card-layout">
+    {% for data in posts %}
+    <div
+      class="card border border-2 border-primary shadow bg-body rounded"
+      style="width: 18rem"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ data['title'] }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ visited_username }}</h6>
+        <p class="card-text overflow-auto limit-text">{{ data['content'] }}</p>
+        <a
+          href="/users/{{ visited_username }}/posts/{{ data['id'] }}"
+          class="card-link"
+          >View More</a
+        >
+        <a href="/users/{{ visited_username }}" class="card-link"
+          >View Profile</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="container mt-4 flex-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" id="previousPageBtn">
+        <a
+          class="page-link"
+          href="/users/{{ visited_username }}?page={{ current_page - 1 }}"
+          id="previousPageLink"
+          >Previous</a
+        >
+      </li>
+
+      {% for i in range(1, page_count + 1) %} {% if i == current_page %}
+      <li
+        class="page-item active"
+        href="/users/{{ visited_username }}?page={{ i }}"
+        aria-current="page"
+      >
+        <a class="page-link active">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="/users/{{ visited_username }}?page={{ i }}"
+          >{{ i }}</a
+        >
+      </li>
+      {% endif %} {% endfor %}
+
+      <li class="page-item" id="nextPageBtn">
+        <a
+          class="page-link"
+          href="/users/{{ visited_username }}?page={{ current_page + 1 }}"
+          id="nextPageLink"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/pagination.js"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main
+%}
+<div class="container">
+  <h1 class="display-1 text-center">Recent Posts</h1>
+  <div class="d-flex flex-wrap card-layout">
+    {% for data in posts %}
+    <div
+      class="card border border-2 border-primary shadow bg-body rounded"
+      style="width: 18rem"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ data['title'] }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ data['author'] }}</h6>
+        <p class="card-text overflow-auto limit-text">{{ data ['content'] }}</p>
+        <a
+          href="/users/{{ data['author'] }}/posts/{{ data['id'] }}"
+          class="card-link"
+          >View More</a
+        >
+        <a href="/users/{{ data['author'] }}" class="card-link">View Profile</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="container mt-4 flex-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" id="previousPageBtn">
+        <a
+          class="page-link"
+          href="/home?page={{ current_page - 1 }}"
+          id="previousPageLink"
+          >Previous</a
+        >
+      </li>
+
+      {% for i in range(1, page_count + 1) %} {% if i == current_page %}
+      <li
+        class="page-item active"
+        href="/home?page={{ i }}"
+        aria-current="page"
+      >
+        <a class="page-link active">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="/home?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %} {% endfor %}
+
+      <li class="page-item" id="nextPageBtn">
+        <a
+          class="page-link"
+          href="/home?page={{ current_page + 1 }}"
+          id="nextPageLink"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/pagination.js"></script>
+{% endblock %}

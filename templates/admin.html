@@ -1,0 +1,55 @@
+{% extends "layout.html" %}{% block title %}Admin{% endblock %} {% block main %}
+<div class="container mt-5">
+  <h1 class="h1 text-center mb-2">Reports</h1>
+  <table class="table table-hover shadow p-3 mb-5 bg-body rounded">
+    <thead>
+      <tr>
+        <th scope="col">Reporter</th>
+        <th scope="col">Reported User</th>
+        <th scope="col">Content Type</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in reports %}
+      <tr>
+        <th scope="row">{{ data['reporter'] }}</th>
+        <th>{{ data['reported_user'] }}</th>
+
+        {% if 'post_id' in data.keys() %}
+        <td>Post</td>
+        {% else %}
+        <td>Comment</td>
+        {% endif %}
+
+        <td>{{ data['reason'] }}</td>
+        <td>{{ data['date'] }}</td>
+        <td>
+          {% if 'post_id' in data.keys() %}
+          <form
+            action="/admin/delete/reports/{{ data['id'] }}"
+            method="post"
+            class="inline"
+          >
+            <input type="hidden" name="content_type" value="post" />
+            <input class="btn btn-primary" type="submit" value="Discard" />
+          </form>
+          {% else %}
+          <form
+            action="/admin/delete/reports/{{ data['id'] }}"
+            method="post"
+            class="inline"
+          >
+            <input type="hidden" name="content_type" value="comment" />
+            <input class="btn btn-primary" type="submit" value="Discard" />
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

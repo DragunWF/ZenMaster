@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {% block title %} Login {% endblock %} {% block main
+%}
+<div class="w-50 container form-container-wrapper rounded">
+  <form
+    action="/login"
+    method="post"
+    class="bg-light shadow-lg p-3 mb-5 bg-body rounded"
+  >
+    <h2 class="h2 text-center">Login</h2>
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <div class="form-button-layout">
+      <div class="form-button">
+        <input class="btn btn-primary" type="submit" value="Login" />
+      </div>
+      <div class="form-button">
+        <a class="btn btn-primary" href="/register" role="button"
+          >Register an account</a
+        >
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

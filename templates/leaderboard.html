@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block title %} Leaderboard {% endblock %} {%
+block main %}
+<div class="container">
+  <h1 class="display-4 text-center">Leaderboard</h1>
+  <table class="table table-hover shadow p-3 mb-5 bg-body rounded">
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">Username</th>
+        <th scope="col">Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in range(length) %}
+      <tr>
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ users[i]["username"] }}</td>
+        <td>Level {{ users[i]["level"] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

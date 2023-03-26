@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block title %} Edit Description {% endblock %} {%
+block main %}
+<div class="container">
+  <form action="/users/{{ username }}/edit" method="post">
+    <h1 class="h1 text-center">Edit Description</h1>
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        name="description"
+        rows="6"
+        placeholder="Edit description..."
+        id="content"
+      >
+{{ description }}</textarea
+      >
+    </div>
+    <div class="form-buttons-horizontal">
+      <input class="btn btn-primary" type="submit" value="Submit" />
+      <input class="btn btn-danger" type="reset" value="Reset" id="reset" />
+    </div>
+  </form>
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/create.js"></script>
+{% endblock %}
